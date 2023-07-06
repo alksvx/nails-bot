@@ -75,7 +75,7 @@ def design(message):
     bot.register_next_step_handler(message, ready)
 
 
-@bot.callback_query_handler(func=lambda callback: True)
+
 def ready(message):
     design1 = message.text
     forma_str = "/".join(forma)
