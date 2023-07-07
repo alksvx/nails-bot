@@ -3,13 +3,9 @@ import os, random
 
 import telebot
 
-
-
 forma, design1 = [], []
 
-bot: TeleBot = telebot.TeleBot('6324719377:AAFaHjBR_PhgjLcv3juANib4grclaVyvU_k')
-
-
+bot: TeleBot = telebot.TeleBot('')
 
 
 @bot.message_handler(commands=['start'])
