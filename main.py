@@ -1,9 +1,10 @@
 from telebot import types, TeleBot
 import os, random
-
 import telebot
 
-forma, design1 = [], []
+
+forma, design1, checkin10 = [], [], []
+
 
 bot: TeleBot = telebot.TeleBot('')
 
@@ -30,6 +31,7 @@ def menu1(message):
     bot.send_message(message.chat.id, "Привет, это наш маникюр-бот. Начнем?", reply_markup=letsgo)
 
 @bot.callback_query_handler(func=lambda callback: True)
+
 def menu(callback):
     if callback.data == 'nails':
         length = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -51,7 +53,7 @@ def menu(callback):
         back = types.InlineKeyboardMarkup()
         backbtn = types.InlineKeyboardButton('Вернуться в меню', callback_data='menu')
         back.row(backbtn)
-        bot.send_message(callback.message.chat.id, "Мы находимся по адресу : **** \nhttps://yandex.ru/maps/9/lipetsk/?ll=39.613400%2C52.611848&z=14", reply_markup=back)
+        bot.send_message(callback.message.chat.id, "Мы находимся по адресу : **** \nhttps://yandex.ru/maps/9/lipetsk/house/lenina_sobornaya_ploshchad_1/Z0AYcw5oSEQCQFtofXpxeHpgYQ==/?ll=39.600156%2C52.609518&z=18", reply_markup=back)
 
     elif callback.data == 'feedback':
         back = types.InlineKeyboardMarkup()
@@ -180,10 +182,15 @@ def ready(message):
 
 def checkin2(message):
     bot.send_message(message.chat.id, 'Напиши свое имя и номер телефона')
+    checkin10 = message.text
+    bot.send_message(781732345, checkin10)
     bot.register_next_step_handler(message, checkin3)
 
 
 def checkin3(message):
+    checkin11 = message.text
+
+    bot.send_message(781732345, checkin11)
     back = types.InlineKeyboardMarkup()
     backbtn = types.InlineKeyboardButton('Вернуться в меню', callback_data='menu')
     back.row(backbtn)
@@ -194,6 +201,8 @@ def feedback2(message):
     back = types.InlineKeyboardMarkup()
     backbtn = types.InlineKeyboardButton('Вернуться в меню', callback_data='menu')
     back.row(backbtn)
+    feedback = message.text
+    bot.send_message(781732345, feedback)
     bot.send_message(message.chat.id,
                      "Спасибо за твой отзыв! Мы обязательно его прочитаем и дадим обратную связь",
                      reply_markup=back)
